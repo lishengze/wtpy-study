@@ -17,6 +17,17 @@ def get_a_share_hist_data():
     df.to_csv('a_share_hist_data.csv', index = False)
     print("数据已保存为a_share_hist_data.csv")
 
+def get_stock_market_value():
+    # 获取贵州茅台（600519）的实时行情数据
+    stock_info = ak.stock_zh_a_spot_em(symbol="600519")
+    # 获取总市值，单位为万元
+    total_market_value = stock_info['总市值'].values[0]
+    # 获取流通市值，单位为万元
+    circulating_market_value = stock_info['流通市值'].values[0]
 
+    print(f"贵州茅台总市值: {total_market_value} 万元")
+    print(f"贵州茅台流通市值: {circulating_market_value} 万元")
+    
 if __name__ == '__main__':
-    get_all_a_share_codes()
+    # get_all_a_share_codes()
+    get_stock_market_value()
