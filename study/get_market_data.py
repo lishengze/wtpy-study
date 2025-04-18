@@ -1,5 +1,6 @@
 import akshare as ak
 import pandas as pd
+import time
 
 def get_all_a_share_codes():
     stock_info_df = ak.stock_info_a_code_name()
@@ -28,6 +29,22 @@ def get_stock_market_value():
     print(f"贵州茅台总市值: {total_market_value} 万元")
     print(f"贵州茅台流通市值: {circulating_market_value} 万元")
     
+    
+def get_realtime_stock_data_atom(symbol):
+    # 获取贵州茅台（600519）的实时行情数据
+    stock_bid_ask_em_df = ak.stock_bid_ask_em(symbol=symbol)
+    print(f"{symbol} 实时行情数据: ",stock_bid_ask_em_df)
+    print('\n')
+    
+
+def get_realtime_stock_data():
+    while True:
+        time.sleep(3)
+        get_realtime_stock_data_atom("600000")
+        
+    
 if __name__ == '__main__':
-    # get_all_a_share_codes()
-    get_stock_market_value()
+    # get_a_share_hist_data()
+    # get_stock_market_value()
+    get_realtime_stock_data()
+    # get_stock_market_value()
